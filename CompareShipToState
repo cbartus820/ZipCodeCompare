@@ -563,28 +563,5 @@ Function getStateTitle(stateAbbreviation As String) As String
     End If
 End Function
 
-Function GetCityStateFromZipCode(zipCode As String) As String
-    Dim url As String
-    Dim xmlHttp As Object
-    Dim response As String
-    Dim city As String
-    Dim state As String
-    
-    ' Define API endpoint
-    url = "https://www.zipcodeapi.com/rest/<Your_API_Key>/info.json/" & zipCode & "/radians"
-    
-    ' Create XMLHTTP object and send request to API endpoint
-    Set xmlHttp = CreateObject("MSXML2.XMLHTTP")
-    xmlHttp.Open "GET", url, False
-    xmlHttp.Send
-    
-    ' Parse JSON response
-    response = xmlHttp.responseText
-    city = Split(Split(response, """city"":""")(1), """")(0)
-    state = Split(Split(response, """state"":""")(1), """")(0)
-    
-    ' Return city and state as string
-    GetCityStateFromZipCode = city & ", " & state
-End Function
 
 
